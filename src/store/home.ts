@@ -2,8 +2,8 @@ import axios from 'axios';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Istate } from "@/utils/interface";
 
-const urlOpenSea =  process.env.OPENSEA_API_URL;
-const keyOpenSea = process.env.OPENSEA_API_KEY;
+const urlOpenSea =  process.env.OPENSEA_API_URL as string;
+const keyOpenSea = process.env.OPENSEA_API_KEY as string;
 
 const initialState: Istate = {
   isLoading: false,
