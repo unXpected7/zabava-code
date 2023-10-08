@@ -44,11 +44,6 @@ const fetchData = async (url: string, headers?: Record<string, string>, params?:
     return response.data;
   } catch (error) {
     let errorMsg = "An error occurred.";
-    if (error.response) {
-      errorMsg = error.response.data.message;
-    } else if (error.request) {
-      errorMsg = "No response was received";
-    }
     throw new Error(errorMsg);
   }
 };
@@ -61,7 +56,8 @@ export const getNFts = (collectionName: string, limitProp: number, nextProp?: st
       const data = await fetchData(url, { accept: 'application/json', 'X-API-KEY': keyOpenSea }, { limit: limitProp, next: nextProp });
       dispatch(updateData(data));
     } catch (error) {
-      dispatch(setError(error.message));
+      let errorMsg = "An error occurred.";
+      dispatch(setError(errorMsg));
     }
   };
 };
@@ -74,7 +70,8 @@ export const getFloorPrice = (collectionName: string) => {
       const data = await fetchData(url, { accept: 'application/json', 'X-API-KEY': keyOpenSea });
       dispatch(setFloorPrice(data));
     } catch (error) {
-      dispatch(setError(error.message));
+      let errorMsg = "An error occurred.";
+      dispatch(setError(errorMsg));
     }
   };
 };
@@ -87,7 +84,8 @@ export const getProfile = (collectionName: string) => {
       const data = await fetchData(url, { accept: 'application/json', 'X-API-KEY': keyOpenSea });
       dispatch(setProfile(data));
     } catch (error) {
-      dispatch(setError(error.message));
+      let errorMsg = "An error occurred.";
+      dispatch(setError(errorMsg));
     }
   };
 };
